@@ -142,7 +142,7 @@ useEffect(() => {
     setHasLoadedHistory(false); // Allow history to be loaded again
 
     try {
-      await fetch('http://localhost:5678/webhook/reset', { method: 'POST' });
+      await fetch('https://primary-production-03c8.up.railway.app/webhook/reset', { method: 'POST' });
     } catch (err) {
       console.error('Reset webhook failed', err);
     }
@@ -151,7 +151,7 @@ useEffect(() => {
   // SUMMARIZE HANDLER - This was missing!
   const handleSummarize = async () => {
     try {
-      const res = await fetch('http://localhost:5678/webhook/summarize', {
+      const res = await fetch('https://primary-production-03c8.up.railway.app/webhook/summarize', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ conversationId })
@@ -194,7 +194,7 @@ useEffect(() => {
   style={{ ...closeButtonStyle, fontSize: '14px', border: '1px solid white', borderRadius: '8px' }}
   onClick={async () => {
     try {
-      const res = await fetch('http://localhost:5678/webhook/case-studies', {
+      const res = await fetch('https://primary-production-03c8.up.railway.app/webhook/case-studies', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({})
