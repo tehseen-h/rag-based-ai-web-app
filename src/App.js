@@ -15,7 +15,7 @@ const AdminPanel = () => {
   const handleReindex = async () => {
     setIsReindexing(true);
     try {
-      const response = await fetch('http://localhost:5678/webhook/reindex-now', {
+      const response = await fetch('https://primary-production-03c8.up.railway.app/webhook/reindex-now', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' }
       });
@@ -103,7 +103,7 @@ function App() {
       setMessages(prev => {
         const updatedMessages = [...prev, userMessage];
         // STORE IN REDIS for Day 7 memory feature
-        fetch('http://localhost:5678/webhook/store-conversation', {
+        fetch('https://primary-production-03c8.up.railway.app/webhook/store-conversation', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ 
