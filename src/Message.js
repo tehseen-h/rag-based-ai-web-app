@@ -195,7 +195,7 @@ const handleEscalationAction = (button) => {
               style={{ ...feedbackButtonStyle, color: 'green' }}
               onClick={async () => {
                 try {
-                  await fetch('http://localhost:5678/webhook/feedback', {
+                  await fetch('https://primary-production-03c8.up.railway.app/webhook/feedback', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ message: text, sentiment: 'positive' })
@@ -211,7 +211,7 @@ const handleEscalationAction = (button) => {
               style={{ ...feedbackButtonStyle, color: 'red' }}
               onClick={async () => {
                 try {
-                  await fetch('http://localhost:5678/webhook/feedback', {
+                  await fetch('https://primary-production-03c8.up.railway.app/webhook/feedback', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ message: text, sentiment: 'negative' })
