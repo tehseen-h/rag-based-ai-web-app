@@ -9,7 +9,7 @@ const AdminPanel = () => {
     setMessage('');
     
     try {
-      const response = await fetch('http://localhost:5678/webhook/reindex-now', {
+      const response = await fetch('https://primary-production-03c8.up.railway.app/webhook/reindex-now', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' }
       });
@@ -28,7 +28,7 @@ const AdminPanel = () => {
     setMessage('');
     
     try {
-      const response = await fetch('http://localhost:5678/webhook/load-test', {
+      const response = await fetch('https://primary-production-03c8.up.railway.app/webhook/load-test', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' }
       });
