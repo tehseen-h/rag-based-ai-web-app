@@ -33,7 +33,7 @@ const ChatInput = ({ onSendMessage, setIsLoading = noop, autoFocusTrigger, conve
       console.log("Sending to predict:", userMessage); // DEBUG
 
       // 1) Ask n8n PredictIntent
-      const predictRes = await fetch('http://localhost:5678/webhook/predict', {
+      const predictRes = await fetch('https://primary-production-03c8.up.railway.app/webhook/predict', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
@@ -71,7 +71,7 @@ const ChatInput = ({ onSendMessage, setIsLoading = noop, autoFocusTrigger, conve
         
         console.log("Sending to estimate:", estimatePayload);
 
-        const estimateRes = await fetch('http://localhost:5678/webhook/estimate', {
+        const estimateRes = await fetch('https://primary-production-03c8.up.railway.app/webhook/estimate', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(estimatePayload)
@@ -95,7 +95,7 @@ const ChatInput = ({ onSendMessage, setIsLoading = noop, autoFocusTrigger, conve
       } else {
         console.log("❌ Taking general question path - Intent was:", actualData?.intent);
 
-        const answerRes = await fetch('http://localhost:5678/webhook/answer', {
+        const answerRes = await fetch('https://primary-production-03c8.up.railway.app/webhook-test/answer', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ 
