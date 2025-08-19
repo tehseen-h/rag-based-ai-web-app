@@ -95,7 +95,7 @@ const ChatInput = ({ onSendMessage, setIsLoading = noop, autoFocusTrigger, conve
       } else {
         console.log("❌ Taking general question path - Intent was:", actualData?.intent);
 
-        const answerRes = await fetch('https://primary-production-03c8.up.railway.app/webhook-test/answer', {
+        const answerRes = await fetch('https://primary-production-03c8.up.railway.app/webhook/answer', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ 
