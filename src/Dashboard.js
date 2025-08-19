@@ -32,7 +32,7 @@ const Dashboard = () => {
     const loadMetrics = async () => {
       try {
         // <-- CHANGED: The actual API call is now active -->
-        const response = await fetch('http://localhost:5678/webhook/get-metrics');
+        const response = await fetch('https://primary-production-03c8.up.railway.app/webhook/log-metrics');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -61,7 +61,7 @@ const Dashboard = () => {
 
   const handleReindexKnowledge = async () => {
     try {
-      const response = await fetch('http://localhost:5678/webhook/reindex-now', {
+      const response = await fetch('https://primary-production-03c8.up.railway.app/webhook/reindex-now', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' }
       });
