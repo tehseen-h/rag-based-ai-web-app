@@ -118,9 +118,9 @@ const ChatInput = ({ onSendMessage, setIsLoading = noop, autoFocusTrigger, conve
 
   // Show message then redirect
 
-    onSendMessage(null, navigateData.message);
+    onSendMessage(null, navigateData[0].message);
 setTimeout(() => {
-  window.location.href = navigateData.redirectUrl;
+  window.location.href = navigateData[0].redirectUrl;
 }, 1500);
 
   
