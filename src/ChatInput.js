@@ -112,6 +112,8 @@ const ChatInput = ({ onSendMessage, setIsLoading = noop, autoFocusTrigger, conve
 
   const navigateData = await navigateRes.json();
   console.log("Navigate response:", navigateData);
+  console.log("Redirect URL:", navigateData.redirectUrl);
+
 
   // Show message then redirect
 
