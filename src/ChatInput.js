@@ -92,6 +92,34 @@ const ChatInput = ({ onSendMessage, setIsLoading = noop, autoFocusTrigger, conve
         botReply = 'Hello! How can I help you today?';
         onSendMessage(null, botReply);
 
+      } else if (actualData && (actualData.intent === 'navigate_contact' || 
+                         actualData.intent === 'navigate_about' || 
+                         actualData.intent === 'navigate_home')) {
+  console.log("✅ Taking navigation path");
+  
+  const navigateRes = await fetch('https://primary-production-03c8.up.railway.app/webhook/navigate', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ 
+      intent: actualData.intent,
+      body: { intent: actualData.intent }
+    })
+  });
+
+  if (!navigateRes.ok) {
+    throw new Error(`Navigate API failed: ${navigateRes.status}`);
+  }
+
+  const navigateData = await navigateRes.json();
+  console.log("Navigate response:", navigateData);
+
+  // Show message then redirect
+  onSendMessage(null, navigateData.message);
+  setTimeout(() => {
+    window.location.href = navigateData.redirectUrl;
+  }, 1500);
+  
+
       } else {
         console.log("❌ Taking general question path - Intent was:", actualData?.intent);
 
