@@ -117,7 +117,7 @@ const ChatInput = ({ onSendMessage, setIsLoading = noop, autoFocusTrigger, conve
 
     onSendMessage(null, navigateData.message);
 setTimeout(() => {
-  window.open(navigateData.redirectUrl, '_blank');
+  window.location.href = navigateData.redirectUrl;
 }, 1500);
 
   
