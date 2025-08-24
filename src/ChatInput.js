@@ -66,7 +66,9 @@ const ChatInput = ({ onSendMessage, setIsLoading = noop, autoFocusTrigger, conve
         const estimatePayload = {
           conversationId,
           service_type: actualData.entities?.service_type || 'general',
-          complexity: actualData.entities?.complexity || 'standard'
+          complexity: actualData.entities?.complexity || 'standard',
+          // pass pages only if predict found them
+          ...(actualData.entities?.pages ? { pages: actualData.entities.pages } : {})
         };
         
         console.log("Sending to estimate:", estimatePayload);
@@ -82,9 +84,10 @@ const ChatInput = ({ onSendMessage, setIsLoading = noop, autoFocusTrigger, conve
         }
 
         const estimateData = await estimateRes.json();
-        console.log("Estimate response:", estimateData);
+        const est = Array.isArray(estimateData) ? estimateData[0] : estimateData; // ✅ unwrap if array
+        console.log("Estimate response (unwrapped):", est);
 
-        botReply = estimateData.message || `Estimated cost: $${estimateData.estimate || 'Contact us for pricing'}`;
+        botReply = est.message || `Estimated cost: $${est.estimate || 'Contact us for pricing'}`;
         onSendMessage(null, botReply);
 
       } else if (actualData && actualData.intent === 'greeting') {
